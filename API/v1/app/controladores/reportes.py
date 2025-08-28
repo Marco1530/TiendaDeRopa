@@ -35,3 +35,15 @@ def ventas_por_fecha():
         return jsonify({"error": "Fechas en formato inválido"}), 400
 
     return jsonify(ventas), 200
+
+# NUEVO: Marcas con al menos una venta
+@reportes_endpoints.route('/reportes/marcas-ventas', methods=['GET'])
+def marcas_ventas():
+    reporte = ReportesModel.marcas_con_ventas()
+    return jsonify(reporte), 200
+
+# NUEVO: Top 5 marcas más vendidas
+@reportes_endpoints.route('/reportes/top-marcas', methods=['GET'])
+def top_marcas():
+    reporte = ReportesModel.top_5_marcas()
+    return jsonify(reporte), 200
